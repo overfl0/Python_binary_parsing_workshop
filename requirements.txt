@@ -1,0 +1,4 @@
+construct==2.9.45
+hurry.filesize==0.9
+kaitaistruct==0.8
+tabulate==0.8.6

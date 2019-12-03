@@ -1,0 +1,36 @@
+root@NAS:~# fdisk -l /dev/sdd
+Disk /dev/sdd: 3.7 TiB, 4000787030016 bytes, 7814037168 sectors
+Disk model: WDC WD40EFRX-68N
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: DD0416F3-E77F-4EF5-9694-F9270CEA9BE8
+
+Device      Start        End    Sectors   Size Type
+/dev/sdd3      63      33011      32949  16.1M Linux filesystem
+/dev/sdd4   33075     246203     213129 104.1M Linux filesystem
+/dev/sdd5  247808 7814037134 7813789327   3.7T Linux filesystem
+
+Partition 3 does not start on physical sector boundary.
+Partition 4 does not start on physical sector boundary.
+
+
+
+root@NAS:~# fdisk -l /dev/sdd -t dos
+Disk /dev/sdd: 3.7 TiB, 4000787030016 bytes, 7814037168 sectors
+Disk model: WDC WD40EFRX-68N
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: dos
+Disk identifier: 0x5452574f
+
+Device     Boot Start    End Sectors   Size Id Type
+/dev/sdd1           1     62      62    31K ee GPT
+/dev/sdd3          63  33011   32949  16.1M 83 Linux
+/dev/sdd4       33075 246203  213129 104.1M 83 Linux
+
+Partition 1 does not start on physical sector boundary.
+Partition 3 does not start on physical sector boundary.
+Partition 4 does not start on physical sector boundary.
