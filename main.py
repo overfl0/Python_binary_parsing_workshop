@@ -25,36 +25,40 @@ def print_mbr(prefix, data):
         get_mbr_partition_data(prefix, 4, data.mbr.partition4),
     ]
 
-    data_filtered = [d for d in data_out if d['Type'] != 'unused']
-    print(tabulate(data_filtered, headers='keys'))
+    # This is optional if you manage to get the Type of the partition
+    # Don't print unused partitions
+    data_out = [d for d in data_out if d['Type'] != 'unused']
+    print(tabulate(data_out, headers='keys'))
 
 
-def get_gpt_partition_data(prefix, i, partition):
-    return {
-        'Device': prefix + str(i),
-        'Boot': '?',
-        'Start': partition.first_lba,
-        'End': partition.last_lba,
-        'Sectors': partition.last_lba - partition.first_lba + 1,
-        'Size': size(partition.size),
-        'Name': partition.partition_name,
-    }
-
-
+# def get_gpt_partition_data(prefix, i, partition):
+#     return {
+#         'Device': prefix + str(i),
+#         'Boot': '?',
+#         'Start': '?',
+#         'End': '?',
+#         'Sectors': '?',
+#         'Size': '?',
+#         'Name': '?',
+#     }
+#
+#
 def print_gpt(prefix, data):
-    if not data.gpt:
-        print('No GPT partition')
-        return
-
-    out = []
-
-    for i in range(data.gpt.header.nof_partitions):
-        if data.gpt.partitions[i].first_lba == 0:
-            continue
-
-        out.append(get_gpt_partition_data(prefix, i + 1, data.gpt.partitions[i]))
-
-    print(tabulate(out, headers='keys'))
+    return
+#     if not data.gpt:
+#         print('No GPT partition')
+#         return
+#
+#     out = []
+#
+#     for i in range(data.gpt.header.nof_partitions):
+#         if data.gpt.partitions[i].first_lba == 0:
+#             continue
+#
+#         out.append(get_gpt_partition_data(prefix, i + 1, data.gpt.partitions[i]))
+#
+#     print()
+#     print(tabulate(out, headers='keys'))
 
 
 def print_info(file_path):
@@ -63,7 +67,6 @@ def print_info(file_path):
 
     parsed = full_data.parse(data)
     print_mbr(file_path, parsed)
-    print()
     print_gpt(file_path, parsed)
     # print(parsed)
 

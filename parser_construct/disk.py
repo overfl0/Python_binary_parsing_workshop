@@ -5,6 +5,7 @@ from parser_construct.mbr import mbr
 
 
 def is_gpt(ctx):
+    return False
     return ctx.mbr.partition1.partition_type == 'GPT' or \
            ctx.mbr.partition2.partition_type == 'GPT' or \
            ctx.mbr.partition3.partition_type == 'GPT' or \
@@ -13,5 +14,5 @@ def is_gpt(ctx):
 
 full_data = Struct(
     'mbr' / mbr,
-    'gpt' / If(is_gpt, gpt),
+    # 'gpt' / If(is_gpt, gpt),
 )
