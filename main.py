@@ -7,13 +7,13 @@ from parser_construct.disk import full_data
 def get_mbr_partition_data(prefix, i, partition):
     return {
         'Device': prefix + str(i),
-        'Boot': '*' if partition.bootable_flag else '',
-        'Start': partition.LBA_address,
-        'End': partition.LBA_address + partition.nof_sectors - 1,
-        'Sectors': partition.nof_sectors,
-        'Size': size(partition.size),
-        'Id': hex(partition.partition_type.intvalue),
-        'Type': partition.partition_type,
+        'Boot': '?',
+        'Start': '?',
+        'End': '?',
+        'Sectors': '?',
+        'Size': '?',
+        'Id': '?',
+        'Type': '?',
     }
 
 
